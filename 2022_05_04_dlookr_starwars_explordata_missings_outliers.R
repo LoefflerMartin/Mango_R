@@ -19,8 +19,3 @@ starwars$height <- dlookr::imputate_outlier(starwars, height)
 
 # wrap up the whole thing and export
 dlookr::diagnose_report(starwars, output_format = "html")
-
-
-
-
-

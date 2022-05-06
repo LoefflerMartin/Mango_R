@@ -16,3 +16,4 @@ par(new=T)  #to draw in the same plot
 plot(P2, main="Random Walk without Drift", 
      xlab="t",ylab="Price", ylim=c(0,100),
      typ='l', col="blue")
+

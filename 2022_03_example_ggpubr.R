@@ -22,3 +22,4 @@ DAT$ID = as.factor(DAT$ID)
 ggdensity(DAT, x = "reaction_time",
           #add = "mean", rug = TRUE,
           color = "ID", fill = "ID")
+

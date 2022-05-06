@@ -20,7 +20,7 @@ my.render.cont <- function(x) {
   with(
     stats.default(x),
     sprintf(
-      "M±SD: %0.2f±%0.2f; MED(IQR): %0.2f (%0.2f-%0.2f) ",
+      "M?SD: %0.2f?%0.2f; MED(IQR): %0.2f (%0.2f-%0.2f) ",
       MEAN,
       SD,
       MEDIAN,
@@ -38,3 +38,4 @@ tbl1 = table1::table1(
 tbl1
 #read_html(tbl1)
 #write.table(x = t[[1]], file = "table.txt", sep = "\t", row.names = F, col.names = T, quote = T)
+
