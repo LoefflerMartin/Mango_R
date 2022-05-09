@@ -1,0 +1,11 @@
+condor_submit file.submit
+condor_q
+condor_q --hold
+condor_q --run
+condor_q -better-analyze 68.0
+condor_rm 68.0
+condor_tail 68.0
+
+
+
+
