@@ -22,6 +22,7 @@ tic("sleeping")
 Sys.sleep(0.5)
 toc()
 
+# tictoc multiple measurements in parallel
 tic("total")
 tic("data generation")
 X <- matrix(rnorm(5000*100), 5000, 100)
