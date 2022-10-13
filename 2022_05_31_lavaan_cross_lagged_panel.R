@@ -16,7 +16,7 @@ t1 ~~ x1
 
 model_fit <- sem(data = meine_daten, model = mein_modell)
 
-summary(model_fit, fit.measures = TRUE, standardized = T)
+summary(model_fit, fit.measures = TRUE)
 
 # Visualisierung mit tidySEM
 library(tidySEM)
