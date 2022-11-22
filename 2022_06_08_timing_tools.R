@@ -83,18 +83,19 @@ time_length(int, "year")
 
 
 # Time zones
-my.time <- ymd_hms("2022-06-08 10:30:00")
+my.time <- ymd_hms("2022-06-15 10:30:00")
 force_tzs(my.time, tzones = "Europe/Amsterdam", tzone_out = "America/Los_Angeles")
 
 # character to date if not in standard format
-dates <- c("01/27/92", "01/27/92", "03/14/92", "03/28/92", "03/01/92")
-times <- c("22:03:20", "21:29:56", "03:03:30", "10:21:03", "10:56:26")
+dates <- c("07/21/86", "06/15/22", "03/14/92", "03/28/92", "03/01/92")
+times <- c("22:03:20", "10:45:00", "03:03:30", "10:21:03", "10:56:26")
 x <- paste(dates, times)
 x
 
 time.vec <- strptime(x, "%m/%d/%y %H:%M:%S")
 time.vec
 int <- interval(time.vec[1], time.vec[2])
+time_length(int, "years")
 time_length(int, "minutes")
 time_length(int, "seconds")
 
