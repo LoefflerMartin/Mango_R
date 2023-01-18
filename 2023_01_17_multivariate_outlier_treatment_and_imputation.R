@@ -5,20 +5,19 @@
 
 rm(list = ls()) #clear workspace
 
-data <- airquality
+#install.packages("dplyr")
+library(dplyr)
 data <- starwars
 data <- data %>% dplyr::select(!c(films, vehicles, starships))
-data$gender <- as.factor(data$gender)
-data$hair_color <- as.factor(data$hair_color)
-data$species <- as.factor(data$species)
-data$sex <- as.factor(data$sex)
-
+data[sapply(data, is.character)] <- lapply(data[sapply(data, is.character)], 
+                                       as.factor)
 
 
 ########### a quick way to see
 # 1) how many missings the dataset has per variable (left)
 # 2) which variables are missing in the same subjects (right)
 # 3) how many subjects have complete data (right)
+#install.packages("VIM")
 library(VIM)
 aggr_plot <-
   aggr(
@@ -36,6 +35,7 @@ aggr_plot <-
 
 
 # do something similar with finalfit
+#install.packages("finalfit")
 library(finalfit)
 explanatory = c("mass", "birth_year", "gender", "hair_color")
 dependent = "height"
@@ -54,6 +54,7 @@ dependent = "gender" # here refers only to the variable being tested for missing
 data %>% missing_compare(dependent, explanatory)
 
 # if you want to use the Little's MCAR Test on the whole dataset (of interest)
+#install.packages("misty")
 library(misty)
 data %>% dplyr::select(c(dependent, explanatory)) %>% na.test()
 
@@ -66,7 +67,7 @@ data %>% dplyr::select(c(dependent, explanatory)) %>% na.test()
 mod <- lm(height ~ mass+birth_year, data = data)
 cooksd <- cooks.distance(mod)
 
-# Plot the Cook's Distance using the traditional 4/n criterion
+# Plot the Cook's Distance using the traditional 4/n criterion (attention, there are different opinions on the cutoff for Cook's distance)
 sample_size <- nrow(data)
 dev.off()
 plot(cooksd, pch="*", cex=2, main="Influential Obs by Cooks distance")  # plot cook's distance
@@ -85,6 +86,8 @@ data_screen <- data[-influential, ]
 # setting the seed is important to have reproducible results.
 # m sets the number of imputed datasets that are being generated.
 # Ideally, analyses should be carried out on multiple datasets and then pooled.
+#install.packages("mice")
+library(mice)
 imp_mult <- mice(data_screen,m=5,maxit=50,meth='pmm',seed=500)
 imp_mult50 <- mice(data_screen,m=50,maxit=50,meth='pmm',seed=500)
 
