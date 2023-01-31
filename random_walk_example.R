@@ -23,6 +23,47 @@ plot(P2, main="Random Walk without Drift",
 
 
 
+# graph for illustration purpose (DO NOT USE LIKE THIS FOR ANYTHING SERIOUS!)
+set.seed(12)
+P1<-RW(500,50,0,3)
+set.seed(12)
+P2<-RW(500,0,0,40)
+plot(P1, main="Random Walk without Drift", 
+     xlab="t",ylab="Probability", ylim=c(-100,100), lwd=3,
+     typ='l', col="red")
+par(new=T)  #to draw in the same plot
+plot(P2, main="Random Walk without Drift", 
+     xlab="t",ylab="Probability", ylim=c(-100,100), lwd = 3,
+     typ='l', col="blue")
+dat <- data.frame(P1, P2, X = sort(rep(1:100, 5)))
+
+
+library("ggplot2") 
+cexaxistitle = 15
+cexaxisticks = 12
+cexpointsize = 4
+l1 <- ggplot(dat, aes(X, P1)) +                                     
+  geom_line(color = "dark green", size = 1) +
+  geom_smooth(method = "gam", alpha = .2, col = "black", fill = "dark green", size = 0.5, level = .9999) +
+  geom_line(aes(X, P2), color = "red", size = 1) +
+  geom_smooth(aes(X, P2), method = "gam", alpha = .2, col = "black", fill = "red", size = 0.5, level = .999999999999999) +
+  theme_classic() +
+  labs(x ="Time", y = "Probability") +
+  theme(
+    axis.title.y = element_text(size = cexaxistitle),
+    axis.title.x = element_text(size = cexaxistitle),
+    axis.text = element_text(size = cexaxisticks)
+  )
+ggsave(
+  filename = paste(dir_out, "random_walk_l1.png", sep = "/"),
+  plot = l1,
+  width = 6,
+  height = 4
+)
+
+
+
+
 ntrials=200
 stepsize = 3
 offset1=70 #maybe replace with random starting point?

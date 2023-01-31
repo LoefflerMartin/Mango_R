@@ -74,6 +74,10 @@ plot(cooksd, pch="*", cex=2, main="Influential Obs by Cooks distance")  # plot c
 abline(h = 4/sample_size, col="red")  # add cutoff line
 text(x=1:length(cooksd)+1, y=cooksd, labels=ifelse(cooksd>4/sample_size, names(cooksd),""), col="red")  # add labels
 
+# alternative wrapper for plotting
+#install.packages("olsrr")
+library(olsrr)
+ols_plot_cooksd_bar(mod)
 
 # REMOVE Outliers
 influential <- as.numeric(names(cooksd)[(cooksd > (4/sample_size))]) # influential row numbers
