@@ -2,6 +2,8 @@
 # ML 2023-01-17
 # see also: https://www.r-bloggers.com/2015/10/imputing-missing-data-with-r-mice-package/
 # and here: https://cran.r-project.org/web/packages/finalfit/vignettes/missing.html
+# !for a very good overview on why when and how we want to use multiple imputation (including code for several software packages) see: https://onlinelibrary.wiley.com/doi/10.1002/icd.2407
+
 
 rm(list = ls()) #clear workspace
 
