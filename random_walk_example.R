@@ -95,6 +95,7 @@ abline(h=upper_limit, col="red", lwd=2, lty=2)
 
 library(tidyverse)
 library(patchwork)
+library(ggpmisc)
 rand_walk <- function(n=100, mu=0, var=3, lower=-Inf, upper=Inf, init=runif(1, lower, upper)) {
   message('+++ random walk +++')
   message('n: ', n)
